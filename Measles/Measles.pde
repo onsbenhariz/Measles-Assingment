@@ -4,13 +4,19 @@ float xFace, yFace, widthDiameterFace, heightDiameterFace;
 void setup() 
 {
   //CANVAS will be added to later
-  size(1200, 700); //Landscape
+  size(800, 600); //Landscape
   //
   //Population
-  xFace = ;
-  yFace = ;
-  widthDiameterFace = ;
-  heightDiameterFace = ;
+  xFace = width/2 ;
+  yFace = height/2;
+  float smallerDimension;
+  if (width >= height) {
+    smallerDimension = height;
+  } else {
+    smallerDimension = width;
+  }//End dimension choice
+  widthDiameterFace = smallerDimension;
+  heightDiameterFace = smallerDimension;
   //
 }//End setup
 //
