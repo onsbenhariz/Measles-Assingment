@@ -4,6 +4,7 @@ float xLeftEye, yLeftEye, eyeDiameter;
 float xRightEye, yRightEye;
 float xNoseBridge, yNoseBridge, xLeftNostril, yLeftNostril, xRightNostril, yRightNostril;
 float xLeftMouth, yLeftMouth, xRightMouth, yRightMouth;
+float xMeasle, yMeasle, measleDiameter;
 //
 void setup() 
 {
@@ -11,8 +12,10 @@ void setup()
   size(800, 600); //Landscape
   //
   //Population
-  xFace = width/2 ;
-  yFace = height/2;
+  float xCenter = width/2;
+  float yCenter = height/2;
+  xFace = xCenter ;
+  yFace = yCenter;
   
   float smallerDimension;
   if (width >= height) {
@@ -22,24 +25,23 @@ void setup()
   }//End dimension choice
   widthDiameterFace = smallerDimension;
   heightDiameterFace = smallerDimension;
-  //
-  float xCenter = width/2
-  float yCenter = height/2
-  xLeftEye = xCenter- width*1/4;
-  yLeftEye =xCenter+ height*1/4;
-  eyeDiameter = width;
-  xRightEye =width+1/2 ;
-  yRightEye = width+1/2;
-  xNoseBridge = ;
-  yNoseBridge = ;
-  xLeftNostril = ;
-  yLeftNostril = ;
-  xRightNostril = ;
-  yRightNostril = ;
-  xLeftMouth = ;
-  yLeftMouth = ;
-  xRightMouth = ;
-  yRightMouth = ;
+  xLeftEye = xCenter - smallerDimension*1/6;
+  yLeftEye = yCenter - smallerDimension*1/6 ;
+  eyeDiameter = smallerDimension*1/6;
+  xRightEye = xCenter + smallerDimension*1/6 ;
+  yRightEye = yCenter - smallerDimension*1/6;
+  xNoseBridge = xCenter;
+  yNoseBridge = yCenter - smallerDimension*1/10;
+  xLeftNostril = xCenter - smallerDimension*1/10 ;
+  yLeftNostril = yCenter + smallerDimension*1/10 ;
+  xRightNostril =xCenter + smallerDimension*1/10;
+  yRightNostril =yLeftNostril;
+  xLeftMouth = xLeftEye;
+  yLeftMouth = yCenter +smallerDimension*1/10;
+  xRightMouth = xRightEye ;
+  yRightMouth = yLeftMouth;
+  faceRadius = smallerDimension/2;
+  measleDiameter = smallerDimension*1/40;
   //
 }//End setup
 //
@@ -51,6 +53,8 @@ void draw()
   triangle(xNoseBridge,yNoseBridge, xLeftNostril, yLeftNostril, xRightNostril, yRightNostril);
   line(xLeftMouth, yLeftMouth, xRightMouth, yRightMouth);
   //
+  xMeasle = random(xCenter-faceRadius, xCenter+faceRadius);
+  yMeasle = random(0, smallerDimension);
   ellipse(xMeasle, yMeasle, measleDiameter, measleDiameter);
   //
 }//End draw
