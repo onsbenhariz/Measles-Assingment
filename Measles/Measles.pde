@@ -5,6 +5,11 @@ float xRightEye, yRightEye;
 float xNoseBridge, yNoseBridge, xLeftNostril, yLeftNostril, xRightNostril, yRightNostril;
 float xLeftMouth, yLeftMouth, xRightMouth, yRightMouth;
 float xMeasle, yMeasle, measleDiameter;
+float faceRadius, xCenter, smallerDimension;
+color resetWhite=#FFFFFF, red=#d61b18; //similar to int declaration
+color backgroundColour;
+int thack=50;
+Boolean nightMode=false;
 //
 void setup() 
 {
@@ -12,13 +17,11 @@ void setup()
   size(800, 600); //Landscape
   //
   //Population
-  float xCenter = width/2;
+  xCenter = width/2;
   float yCenter = height/2;
-  xFace = xCenter ;
+  xFace = xCenter;
   yFace = yCenter;
-  
-  float smallerDimension;
-  if (width >= height) {
+  if ( width >= height ) {
     smallerDimension = height;
   } else {
     smallerDimension = width;
@@ -41,21 +44,32 @@ void setup()
   xRightMouth = xRightEye ;
   yRightMouth = yLeftMouth;
   faceRadius = smallerDimension/2;
-  measleDiameter = smallerDimension*1/40;
+  //
+  Boolean nightMode=true;
+  color backgroundColour = (nightMode== true) ? color( random(255), random(255), 0 ) : color( random(255), random(255), random(255) ); //ternary operator, similar to IF-Else
+  background( backgroundColour);
+  ellipse(xFace, yFace, widthDiameterFace, heightDiameterFace);
   //
 }//End setup
 //
 void draw() 
 {
-  ellipse(xFace, yFace, widthDiameterFace, heightDiameterFace);
   ellipse (xLeftEye, yLeftEye, eyeDiameter, eyeDiameter);
   ellipse (xRightEye, yRightEye, eyeDiameter, eyeDiameter);
   triangle(xNoseBridge,yNoseBridge, xLeftNostril, yLeftNostril, xRightNostril, yRightNostril);
+  strokeCap(SQUARE); //ROUND (default),PROJECT
+  strokeWeight(thack);
   line(xLeftMouth, yLeftMouth, xRightMouth, yRightMouth);
+  strokeWeight(1); //resets default
   //
   xMeasle = random(xCenter-faceRadius, xCenter+faceRadius);
-  yMeasle = random(0, smallerDimension);
+  yMeasle = random(smallerDimension); //if zero is first, then default
+  fill(red);
+  noStroke();
+  measleDiameter = random(smallerDimension*1/40, smallerDimension*1/20); //smallerDimension
   ellipse(xMeasle, yMeasle, measleDiameter, measleDiameter);
+  stroke(1); //reset default
+  fill(resetWhite);
   //
 }//End draw
 //
@@ -63,6 +77,33 @@ void keyPressed() {
 }//End keyPressed
 //
 void mousePressed() {
+  //Technically, there are 4 ways to code a mouse button press
+  //
+  if ( mouseButton == LEFT ) { //Night Mode FALSE
+    backgroundColour = color( random(255), random(255), random(255) );
+  background( backgroundColour);
+  ellipse(xFace, yFace, widthDiameterFace, heightDiameterFace);
+  }//End Left Mouse Button
+  if ( mouseButton == RIGHT ) { //Night Mode TRUE
+  backgroundColour = color( random(255), random(255), 0 );
+  background( backgroundColour);
+  ellipse(xFace, yFace, widthDiameterFace, heightDiameterFace);
+  }//End Right Mouse Button
+  //
+  //Note: Mouse WHEEL is also available
+  //if ( mouseButton == WHEEL ) {}//End Mouse WHEEL
+  //
+  /* For any button
+   if ( nightMode == false ) { //NightMode Switch
+   nightMode = true;
+   } else {
+   nightMode = false;
+   } //End nightMode switch
+   //ackgroundColour = (nightMode== true) ? color( random(255), random(255), 0 ) : color( random(255), random(255), random(255) ); //ternary operator, similar to IF-Else
+  background( backgroundColour);
+  ellipse(xFace, yFace, widthDiameterFace, heightDiameterFace);
+  */
+  //
 }//End mousePressed
 //
 //End MAIN Program
