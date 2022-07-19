@@ -48,6 +48,7 @@ void setup()
   Boolean nightMode=true;
   color backgroundColour = (nightMode== true) ? color( random(255), random(255), 0 ) : color( random(255), random(255), random(255) ); //ternary operator, similar to IF-Else
   background( backgroundColour);
+  rect(xCenter-faceRadius, 0, 2*faceRadius, smallerDimension); //X&Y Measles  Random Postioning
   ellipse(xFace, yFace, widthDiameterFace, heightDiameterFace);
   //
 }//End setup
@@ -64,6 +65,7 @@ void draw()
   //
   xMeasle = random(xCenter-faceRadius, xCenter+faceRadius);
   yMeasle = random(smallerDimension); //if zero is first, then default
+  //rect(xCenter-faceRadius, 0, 2*faceRadius, smallerDimension);
   fill(red);
   noStroke();
   measleDiameter = random(smallerDimension*1/40, smallerDimension*1/20); //smallerDimension
