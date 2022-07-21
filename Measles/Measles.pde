@@ -6,10 +6,12 @@ float xNoseBridge, yNoseBridge, xLeftNostril, yLeftNostril, xRightNostril, yRigh
 float xLeftMouth, yLeftMouth, xRightMouth, yRightMouth;
 float xMeasle, yMeasle, measleDiameter;
 float faceRadius, xCenter, smallerDimension;
+float xTopRight1, yTopRight1, xTopRight2, yTopRight2, xTopRight3, yTopRight3;
 color resetWhite=#FFFFFF, red=#d61b18; //similar to int declaration
 color backgroundColour;
 int thack=50;
 Boolean nightMode=false;
+float   measlesy;
 //
 void setup() 
 {
@@ -44,6 +46,13 @@ void setup()
   xRightMouth = xRightEye ;
   yRightMouth = yLeftMouth;
   faceRadius = smallerDimension/2;
+  xTopRight1 = xCenter-faceRadius;
+  yTopRight1 = 0;
+  xTopRight2 =xCenter ;
+  yTopRight2 = 0 ;
+  xTopRight3 = xCenter-faceRadius ;
+  yTopRight3 = yCenter - smallerDimension*1/6 ;
+  //measlesy = (yCenter + height*1/4);
   //
   Boolean nightMode=true;
   color backgroundColour = (nightMode== true) ? color( random(255), random(255), 0 ) : color( random(255), random(255), random(255) ); //ternary operator, similar to IF-Else
@@ -64,7 +73,7 @@ void draw()
   strokeWeight(1); //resets default
   //
   xMeasle = random(xCenter-faceRadius, xCenter+faceRadius);
-  yMeasle = random(smallerDimension); //if zero is first, then default
+  yMeasle = random(smallerDimension*1/4, smallerDimension); //if zero is first, then default
   //rect(xCenter-faceRadius, 0, 2*faceRadius, smallerDimension);
   fill(red);
   noStroke();
@@ -73,6 +82,8 @@ void draw()
   stroke(1); //reset default
   fill(resetWhite);
   //
+  //
+  //triangle(xTopRight1, yTopRight1, xTopRight2, yTopRight2, xTopRight3, yTopRight3);
 }//End draw
 //
 void keyPressed() {
