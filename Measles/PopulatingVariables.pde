@@ -10,6 +10,7 @@ float faceRadius, xCenter, smallerDimension;
 float xTopRight1, yTopRight1, xTopRight2, yTopRight2, xTopRight3, yTopRight3;
 float imageX1, imageY1, imageWidth1, imageHeight1;
 float imageX2, imageY2, imageWidth2, imageHeight2;
+float xbyeButton, ybyeButton ,byeButtonWidth ,byeButtonHeight;
 
 void populatingVariables() 
 {
@@ -25,6 +26,7 @@ void populatingVariables()
   }//End dimension choice
   pic1 = loadImage("ImagesUsed/rightear.png"); 
   pic2 = loadImage("ImagesUsed/leftear.png"); 
+  pic3 = loadImage("ImagesUsed/scarf.png");
 imageX1 = xCenter-faceRadius;
 imageY1 = yCenter-smallerDimension*1/2;
 //imageWidth1 = width/2; //CANVAS (0,0) means point doesn't match to rectangle, missing outline on two sides
@@ -59,5 +61,9 @@ imageHeight2 = (height-1)*1/2;
   yTopRight2 = 0 ;
   xTopRight3 = xCenter-faceRadius ;
   yTopRight3 = yCenter - smallerDimension*1/6 ;
+  xbyeButton = xCenter + smallerDimension*1/2 ;
+  ybyeButton = 0 ;
+  byeButtonWidth = smallerDimension*1/10 ;
+  byeButtonHeight = smallerDimension*1/10;
   //
 }//End populatingVariables
