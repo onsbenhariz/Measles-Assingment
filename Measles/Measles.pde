@@ -1,69 +1,33 @@
 //Global Variables
-float xFace, yFace, widthDiameterFace, heightDiameterFace;
-float xLeftEye, yLeftEye, eyeDiameter;
-float xRightEye, yRightEye;
-float xNoseBridge, yNoseBridge, xLeftNostril, yLeftNostril, xRightNostril, yRightNostril;
-float xLeftMouth, yLeftMouth, xRightMouth, yRightMouth;
-float xMeasle, yMeasle, measleDiameter;
-float faceRadius, xCenter, smallerDimension;
-float xTopRight1, yTopRight1, xTopRight2, yTopRight2, xTopRight3, yTopRight3;
 color resetWhite=#FFFFFF, red=#d61b18; //similar to int declaration
+color green=#08761B;
+color skin=#D8B114;
 color backgroundColour;
 int thack=50;
 Boolean nightMode=false;
 float   measlesy;
+PImage pic1, pic2;
 //
 void setup() 
 {
   //CANVAS will be added to later
   size(800, 600); //Landscape
   //
-  //Population
-  xCenter = width/2;
-  float yCenter = height/2;
-  xFace = xCenter;
-  yFace = yCenter;
-  if ( width >= height ) {
-    smallerDimension = height;
-  } else {
-    smallerDimension = width;
-  }//End dimension choice
-  widthDiameterFace = smallerDimension;
-  heightDiameterFace = smallerDimension;
-  xLeftEye = xCenter - smallerDimension*1/6;
-  yLeftEye = yCenter - smallerDimension*1/6 ;
-  eyeDiameter = smallerDimension*1/6;
-  xRightEye = xCenter + smallerDimension*1/6 ;
-  yRightEye = yCenter - smallerDimension*1/6;
-  xNoseBridge = xCenter;
-  yNoseBridge = yCenter - smallerDimension*1/10;
-  xLeftNostril = xCenter - smallerDimension*1/10 ;
-  yLeftNostril = yCenter + smallerDimension*1/10 ;
-  xRightNostril =xCenter + smallerDimension*1/10;
-  yRightNostril =yLeftNostril;
-  xLeftMouth = xLeftEye;
-  yLeftMouth = yCenter +smallerDimension*1/10;
-  xRightMouth = xRightEye ;
-  yRightMouth = yLeftMouth;
-  faceRadius = smallerDimension/2;
-  xTopRight1 = xCenter-faceRadius;
-  yTopRight1 = 0;
-  xTopRight2 =xCenter ;
-  yTopRight2 = 0 ;
-  xTopRight3 = xCenter-faceRadius ;
-  yTopRight3 = yCenter - smallerDimension*1/6 ;
-  //measlesy = (yCenter + height*1/4);
-  //
+   populatingVariables();
+   //
   Boolean nightMode=true;
   color backgroundColour = (nightMode== true) ? color( random(255), random(255), 0 ) : color( random(255), random(255), random(255) ); //ternary operator, similar to IF-Else
   background( backgroundColour);
   rect(xCenter-faceRadius, 0, 2*faceRadius, smallerDimension); //X&Y Measles  Random Postioning
+  fill(skin);
   ellipse(xFace, yFace, widthDiameterFace, heightDiameterFace);
   //
 }//End setup
 //
 void draw() 
 {
+  image(pic1, 590,150, width/4, height/2);
+  image(pic2, 20,150, width/4, height/2);
   ellipse (xLeftEye, yLeftEye, eyeDiameter, eyeDiameter);
   ellipse (xRightEye, yRightEye, eyeDiameter, eyeDiameter);
   triangle(xNoseBridge,yNoseBridge, xLeftNostril, yLeftNostril, xRightNostril, yRightNostril);
@@ -71,21 +35,49 @@ void draw()
   strokeWeight(thack);
   line(xLeftMouth, yLeftMouth, xRightMouth, yRightMouth);
   strokeWeight(1); //resets default
+
+  
   //
   xMeasle = random(xCenter-faceRadius, xCenter+faceRadius);
   yMeasle = random(smallerDimension*1/4, smallerDimension); //if zero is first, then default
   //rect(xCenter-faceRadius, 0, 2*faceRadius, smallerDimension);
   fill(red);
   noStroke();
-  measleDiameter = random(smallerDimension*1/40, smallerDimension*1/20); //smallerDimension
+  measleDiameter = random(smallerDimension*1/60, smallerDimension*1/45); //smallerDimension
   ellipse(xMeasle, yMeasle, measleDiameter, measleDiameter);
   stroke(1); //reset default
   fill(resetWhite);
   //
+  //mouth
+  noFill();
+  strokeWeight(10);
+  arc(xMouth, yMouth, 300, 300, 0 + QUARTER_PI, PI - QUARTER_PI);
+  
+  
+  
+  
   //
+  //HAT
+  fill(green);
+  noStroke();
+  rect( xCenter-faceRadius, 0, 2*faceRadius, smallerDimension/4, 50 );
+  stroke(1);
+   fill(resetWhite);
+  //End HAT
   //triangle(xTopRight1, yTopRight1, xTopRight2, yTopRight2, xTopRight3, yTopRight3);
 }//End draw
 //
+
+
+
+
+
+
+
+
+
+
+
 void keyPressed() {
 }//End keyPressed
 //
